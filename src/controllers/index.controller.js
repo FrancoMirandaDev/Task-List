@@ -1,3 +1,5 @@
+//Funciones que son utilizadas dentro de routes
+
 export const renderIndex = (req, res) => {
   res.send("index");
 };

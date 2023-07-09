@@ -1,3 +1,5 @@
+//Se usa para facilitar el manejo de authentificacion y agrega una capa mas de seguridad
+
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 

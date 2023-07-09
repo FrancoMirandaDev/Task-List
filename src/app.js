@@ -1,6 +1,9 @@
 import express from "express";
-import { MONGODB_URI, PORT } from "./config.js";
+import { PORT } from "./config.js";
 import morgan from "morgan";
+
+import Routerindex from "./routes/index.routes.js";
+import Routerlogin from "./routes/auth.routes.js";
 
 //Iniciamos Express
 const app = express();
@@ -11,12 +14,7 @@ app.use(morgan("dev"));
 //Establece el port de la variable de entorno
 app.set("port", PORT);
 
-
-app.use("/",(req,res) => {
-    res.send(`<h1>hola este es mi app de 
-    <span style="color: red">todo list</span>
-     con base de datos</h1>
-     `).end
-})
+app.use(Routerindex);
+app.use(Routerlogin);
 
 export default app;
