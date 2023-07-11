@@ -1,9 +1,9 @@
 //Funciones que son utilizadas dentro de routes
 
 export const renderIndex = (req, res) => {
-  res.send("index");
+  res.render("index");
 };
 
 export const renderAbout = (req, res) => {
-  res.send("about");
+  res.render("about");
 };
