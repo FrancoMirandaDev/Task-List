@@ -1,7 +1,13 @@
 <div>Formulario para registro de user</div>
 <div>
-    <form action="/auth/signup" method="post">
-        <label for="password">Name:</label>
-        <input type="text" value="{{password}}" ></input>
+    <form action="/auth/signup" method="POST">
+         <label for="name">Name:</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value="{{name}}"
+            />
+            <button>Save</button>
     </form>
 </div>
