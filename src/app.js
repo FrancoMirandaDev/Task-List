@@ -1,6 +1,7 @@
 import express from "express";
-import { PORT } from "./config.js";
+import { PORT, MONGODB_URI } from "./config.js";
 import morgan from "morgan";
+import MongoStore from "connect-mongo";
 
 import flash from "connect-flash";
 import session from "express-session";
@@ -21,6 +22,7 @@ app.set("views", join(__dirname, "views"));
 
 //Configuramos handlebars
 const hbs = handlebars.create({
+  defaultLayout: "main",
   layoutsDir: join(app.get("views"), "layouts"),
   partialsDir: join(app.get("views"), "partials"),
   extname: ".hbs",
@@ -34,19 +36,25 @@ app.use(morgan("dev"));
 //Establece el port de la variable de entorno
 app.set("port", PORT);
 
+//Configuramos para permitir el req.body
+app.use(express.urlencoded({ extended: false }));
+
 //Mensajes flash y Express-session
 app.use(
   session({
     secret: "secret",
     resave: true,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: MONGODB_URI }),
   })
 );
+
 app.use(flash());
 
 //Variables Globales
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
+  res.locals.name = req.body.name;
   next();
 });
 

@@ -2,7 +2,9 @@ export const renderSignUpForm = (req, res) => res.render("auth/signup");
 
 export const signup = (req, res) => {
   const { name } = req.body;
-  console.log("este es el :", name);
+  let error = [];
+
   req.flash("success_msg", "You are registered.");
-  return res.redirect("/");
+  console.log("The name is : ", name);
+  return res.redirect("/auth/signup");
 };
