@@ -1,4 +1,4 @@
-//Esquema de usuarios 
+//Esquema de usuarios
 
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
@@ -22,7 +22,7 @@ UserSchema.methods.encryptPassword = async (password) => {
   return await bcrypt.hash(password, salt);
 };
 
-//Compara la contraseña se encrypto corectamente 
+//Compara la contraseña se encrypto corectamente
 
 UserSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
