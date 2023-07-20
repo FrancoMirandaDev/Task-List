@@ -44,8 +44,17 @@ export const signup = async (req, res) => {
 
 export const renderSigninForm = (req, res) => res.render("auth/signin");
 
+//Verificamos el login con passport
 export const signin = passport.authenticate("local", {
   successRedirect: "/task",
   failureRedirect: "/auth/signin",
   failureFlash: true,
 });
+
+export const logout = async (req, res, next) => {
+  await req.logout((err) => {
+    if (err) return next(err);
+    req.flash("success_msg", "You are logged out now.");
+    res.redirect("/auth/signin");
+  });
+};

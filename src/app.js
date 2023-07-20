@@ -12,7 +12,10 @@ import { fileURLToPath } from "url";
 
 import Routerindex from "./routes/index.routes.js";
 import Routerlogin from "./routes/auth.routes.js";
+import Routertask from "./routes/task.routes.js";
+
 import "./config/passport.js";
+import passport from "passport";
 
 //Iniciamos Express
 const app = express();
@@ -49,7 +52,8 @@ app.use(
     store: MongoStore.create({ mongoUrl: MONGODB_URI }),
   })
 );
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 //Variables Globales
@@ -57,11 +61,13 @@ app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash("error");
+  res.locals.user = req.user || null;
   next();
 });
 
 //Routes
 app.use(Routerindex);
 app.use(Routerlogin);
+app.use(Routertask);
 
 export default app;

@@ -4,6 +4,7 @@ import {
   signup,
   renderSigninForm,
   signin,
+  logout,
 } from "../controllers/auth.controller.js";
 
 const router = Router();
@@ -16,5 +17,7 @@ router.post("/auth/signup", signup);
 router.get("/auth/signin", renderSigninForm);
 
 router.post("/auth/signin", signin);
+
+router.get("/auth/logout", logout);
 
 export default router;
