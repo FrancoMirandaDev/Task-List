@@ -18,35 +18,16 @@
           <a class="nav-link" href="/about">About</a>
         </li>
       </ul>
+      {{#if}}
       <ul class="navbar-nav ms-auto">
-        
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Notes
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/notes">All Notes</a>
-              <a class="dropdown-item" href="/notes/add">Add A Note</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/auth/logout">Logout</a>
-            </ul>
-          </li>
-        
           <li class="nav-item">
             <a class="nav-link" href="/auth/signin">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/auth/signup">Register</a>
           </li>
-        
-      </ul>
+        </ul>
+      {{/if}}
     </div>
   </div>
 </nav>

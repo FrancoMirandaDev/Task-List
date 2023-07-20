@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 
 import Routerindex from "./routes/index.routes.js";
 import Routerlogin from "./routes/auth.routes.js";
+import "./config/passport.js";
 
 //Iniciamos Express
 const app = express();
@@ -55,6 +56,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
   next();
 });
 

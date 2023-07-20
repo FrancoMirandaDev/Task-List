@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import passport from "passport";
 
 export const renderSignUpForm = (req, res) => res.render("auth/signup");
 
@@ -35,8 +36,16 @@ export const signup = async (req, res) => {
   userDB.password = await userDB.encryptPassword(password);
   await userDB.save();
   req.flash("success_msg", "You are registered.");
-  console.log(
+  /*console.log(
     `The name is : ${userDB.name} and email is : ${userDB.email} and password is ${userDB.password} and this is ${confirm_password}`
-  );
+  );*/
   return res.redirect("/auth/signin");
 };
+
+export const renderSigninForm = (req, res) => res.render("auth/signin");
+
+export const signin = passport.authenticate("local", {
+  successRedirect: "/task",
+  failureRedirect: "/auth/signin",
+  failureFlash: true,
+});
