@@ -70,4 +70,15 @@ app.use(Routerindex);
 app.use(Routerlogin);
 app.use(Routertask);
 
+app.use((req, res, next) => {
+  return res.status(404).render("404");
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.render("error", {
+    error,
+  });
+});
+
 export default app;
