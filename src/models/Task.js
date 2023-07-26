@@ -2,24 +2,20 @@
 
 import mongoose from "mongoose";
 
-const ListTodo = new mongoose.Schema(
-    {
-        title: {
-          type: String,
-          required: true,
-        },
-        description: {
-          type: String,
-          required: true,
-        },
-        user: {
-          type: String,
-          required: true,
-        },
-      },
-    {
-        timestamps: true,
-    }
+const tasks = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
-export default mongoose.model("ListTodo", ListTodo)
+export default mongoose.model("tasks", tasks);
