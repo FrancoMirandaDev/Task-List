@@ -19,9 +19,14 @@ export const createNewTask = async (req, res) => {
   );
   await taskDB.save();
   req.flash("success_msg", "El task se creo con exito");
-  res.redirect("task/all-task");
+  res.redirect("/task");
 };
 
-/*export const renderAllTask =  async (req, res) => {
-  const task = await Task.
-}*/
+export const renderAllTask = async (req, res) => {
+  const tasks = await Task.find({ user: req.user.id })
+    .sort({ date: "desc" })
+    .lean();
+  console.log(`Estos son los tasks:${tasks} y este es el user ${req.user.id}`);
+  console.log(tasks);
+  res.render("task/all-task", { tasks });
+};

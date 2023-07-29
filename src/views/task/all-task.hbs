@@ -1,7 +1,11 @@
 <div class="container">
     <h3 class="text-center">Este es Task List</h3>
-    {{#each task}}
-        <h1>{{title}}</h1>
+    {{#each tasks}}
+        <div class="container p-4 border border-primary justify-content-between">
+            <h1>{{title}}
+            <a href="#"><i class="fas fa-edit"></i></a>
+            </h1>
+        </div>
     {{/each}}
 
 
