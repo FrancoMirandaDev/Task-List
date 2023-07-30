@@ -5,22 +5,31 @@ export const renderSignUpForm = (req, res) => res.render("auth/signup");
 
 export const signup = async (req, res) => {
   const { name, email, password, confirm_password } = req.body;
-  let errors = [];
+  let error = [];
 
   //errores varios
+  if (!name) {
+    error.push("Ingresar Nombre");
+  }
+
+  if (!email) {
+    error.push("Ingresar Email");
+  }
+
   if (password !== confirm_password) {
-    errors.push("Diferentes Password");
+    error.push("Diferentes Password");
   }
   if (password.length < 4) {
-    errors.push("Minimum 4 characters");
+    error.push("Minimum 4 characters");
   }
-  if (errors.length > 0) {
+  if (error.length > 0) {
+    console.log(error);
     return res.render("auth/signup", {
       name,
       email,
       password,
       confirm_password,
-      errors,
+      error,
     });
   }
 
