@@ -1,5 +1,5 @@
 <div class="container">
-    <h3 class="text-center">Este es Task List</h3>
+    <h3 class="text-center">Hola {{name}} esta es tu lista de tareas:</h3>
     {{#each tasks}}
         <div class="container p-4 border border-primary justify-content-between">
             <h1>{{title}}
@@ -7,6 +7,17 @@
             <a href="#"><i class="fas fa-check-square"></i></a>
             </h1>
         </div>
+
+
+        {{else}}
+        <div class="card-body p-4">
+            <h1>Todavia no creaste ninguna tarea</h1>
+            <a href="task/new-task">
+                <button class="btn btn-primary w-10" type="submit">Crear tarea nueva
+                </button>
+            </a>
+        </div>
+
     {{/each}}
 
 
