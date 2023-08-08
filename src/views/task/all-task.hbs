@@ -1,19 +1,23 @@
 <div class="container">
-    <h3 class="text-center">Hola {{name}} esta es tu lista de tareas:</h3>
+    <h3 class="p-2 text-center">This is your task list:</h3>
     {{#each tasks}}
-        <div class="container p-4 border border-primary justify-content-between">
+        <div class="container p-4 border border-primary justify-content-between align-items-right">
             <h1>{{title}}
-            <a href="#"><i class="fas fa-edit"></i></a>
-            <a href="#"><i class="fas fa-check-square"></i></a>
+            <a href="/task/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+            <!--<a href="/task/delete/{{_id}}?_method=DELETE"><i class="fas fa-check-square"></i></a>-->
+            <form action="/task/delete/{{_id}}?_method=DELETE" method="POST">
+             <input type="hidden" name="_method" value="DELETE">
+             <button type="submit" class="btn btn-danger btn-block btn-sm"><i class="fas fa-trash"></i></button>
+             </form>
             </h1>
         </div>
 
 
         {{else}}
-        <div class="card-body p-4">
-            <h1>Todavia no creaste ninguna tarea</h1>
+        <div class="card-body p-4 border border-primary">
+            <h1>You haven't created any tasks</h1>
             <a href="task/new-task">
-                <button class="btn btn-primary w-10" type="submit">Crear tarea nueva
+                <button class="btn btn-primary w-10" type="submit">Create new task
                 </button>
             </a>
         </div>

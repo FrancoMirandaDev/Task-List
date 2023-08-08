@@ -3,6 +3,8 @@ import { PORT, MONGODB_URI } from "./config.js";
 import morgan from "morgan";
 import MongoStore from "connect-mongo";
 
+import methodOverride from "method-override";
+
 import flash from "connect-flash";
 import session from "express-session";
 
@@ -43,6 +45,9 @@ app.set("port", PORT);
 //Configuramos para permitir el req.body
 app.use(express.urlencoded({ extended: false }));
 
+//Permite cambiar el metodo HTTP
+app.use(methodOverride("_method"));
+
 //Mensajes flash y Express-session
 app.use(
   session({
@@ -62,7 +67,6 @@ app.use((req, res, next) => {
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash("error");
   res.locals.user = req.user || null;
-  res.locals.name = req.user.name || null;
   next();
 });
 

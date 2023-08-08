@@ -9,15 +9,15 @@ export const signup = async (req, res) => {
 
   //errores varios
   if (!name) {
-    error.push("Ingresar Nombre");
+    error.push("Enter name");
   }
 
   if (!email) {
-    error.push("Ingresar Email");
+    error.push("Enter Email");
   }
 
   if (password !== confirm_password) {
-    error.push("Diferentes Password");
+    error.push("Different Password");
   }
   if (password.length < 4) {
     error.push("Minimum 4 characters");
@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
   //Verificamos el email en la base de datos
   const user = await User.findOne({ email });
   if (user) {
-    req.flash("error_msg", "El Usuario ya Existe");
+    req.flash("error_msg", "This user exists");
     return res.redirect("/auth/signup");
   }
 
@@ -45,9 +45,6 @@ export const signup = async (req, res) => {
   userDB.password = await userDB.encryptPassword(password);
   await userDB.save();
   req.flash("success_msg", "You are registered.");
-  /*console.log(
-    `The name is : ${userDB.name} and email is : ${userDB.email} and password is ${userDB.password} and this is ${confirm_password}`
-  );*/
   return res.redirect("/auth/signin");
 };
 
