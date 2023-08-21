@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
   //Verificamos el email en la base de datos
   const user = await User.findOne({ email });
   if (user) {
-    req.flash("error_msg", "This user exists");
+    req.flash("error_msg", "This email is already used");
     return res.redirect("/auth/signup");
   }
 
