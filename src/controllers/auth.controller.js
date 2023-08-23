@@ -23,7 +23,6 @@ export const signup = async (req, res) => {
     error.push("Minimum 4 characters");
   }
   if (error.length > 0) {
-    console.log(error);
     return res.render("auth/signup", {
       name,
       email,

@@ -39,14 +39,12 @@ export const renderTaskEditForm = async (req, res) => {
 
 export const updateTask = async (req, res) => {
   const { title } = req.body;
-  console.log(Task.findById(req.params.id));
   await Task.findByIdAndUpdate(req.params.id, { title });
   req.flash("success_msg", "Task Updated Sucessfully");
   res.redirect("/task");
 };
 
 export const deleteTask = async (req, res) => {
-  console.log(Task.findById(req.params.id));
   await Task.findByIdAndDelete(req.params.id);
   req.flash("success_msg", "Task Deleted Sucessfully");
   res.redirect("/task");
